@@ -1,21 +1,22 @@
-package tests;
+package tests.withcomment;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
-public class SelenideRepositorySearchTest {
+public class CommentSelenideRepositorySearchTest {
     @BeforeAll
-    static void basicBrowserSettings() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.pageLoadStrategy = "eager";
+    static void beforeAll() {
+        Configuration.browserSize = "1920x1080"; //открывает браузер в высоком разрешении
+        Configuration.pageLoadStrategy = "eager"; // не дожидаемся лоудера страницы
     }
 
     @Test
-    void findSelenideJunitTest() {
+    void findSelenideJunit() {
 
         //открыть главную страницу
 
@@ -23,10 +24,14 @@ public class SelenideRepositorySearchTest {
 
         //ввести в поле поиска selenide и нажать enter
 
+        //$(".practice-form-wrapper").shouldHave(text("Student Registration Form")); // проверка зотображения текста
 
         $("[placeholder='Search or jump to...']").click(); // клик на поиск
 
         $("#query-builder-test").setValue("Selenide").pressEnter(); // ввод "Selenide" и enter
+
+        //sleep(5000); // временно для отображения страницы
+
 
         // кликнуть на репозиторий Selenide
 
@@ -50,6 +55,9 @@ public class SelenideRepositorySearchTest {
 
         // проверка что внутри есть заголовок JUnit5 и пример кода
 
+       // $(".markdown-body").shouldHave(text("3. Using JUnit5 extend test class:"));
+
+        //$(withText("Using JUnit5")).scrollTo();
 
         $("#wiki-wrapper").shouldHave(text("@ExtendWith({SoftAssertsExtension.class})" +
                 "\n" +
